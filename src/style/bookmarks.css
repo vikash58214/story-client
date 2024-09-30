@@ -1,0 +1,19 @@
+.bookmarks-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bookmarks-containers {
+  width: 90%;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+@media (max-width: 480px) {
+  .bookmarks-containers {
+    justify-content: center;
+  }
+}

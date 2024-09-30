@@ -1,0 +1,41 @@
+.edit-div {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.your-story-container {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+.edit-btn {
+  background-color: white;
+  border-radius: 10px;
+  width: 70px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 25px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+.yor-story-body {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .your-story-container {
+    justify-content: center;
+  }
+}

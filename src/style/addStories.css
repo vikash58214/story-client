@@ -1,0 +1,157 @@
+.create-story-body {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.819);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+}
+
+.story-form-container {
+  padding: 20px;
+  width: 500px;
+  margin: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slide-tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.slide-tab,
+.add-slide {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 14px;
+}
+
+.slide-tab.active {
+  border: 2px solid blue;
+}
+
+.add-slide {
+  font-weight: bold;
+}
+
+.form-fields {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  display: block;
+  width: 70%;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+.form-group select {
+  display: block;
+  width: 74%;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+.form-group textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  background-color: #7eff73;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .story-form-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .slide-tab,
+  .add-slide {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .slide-tabs {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-form-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 5px;
+    font-size: 11px;
+  }
+
+  .slide-tab,
+  .add-slide {
+    font-size: 11px;
+    padding: 6px;
+  }
+}

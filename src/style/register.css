@@ -1,0 +1,94 @@
+.register-body {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.797);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.register-container {
+  width: 40%;
+  height: 60vh;
+  background-color: #ffffff;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-form {
+  width: 80%;
+  height: 50vh;
+}
+.x {
+  background: none;
+  border: solid 3px red;
+  color: red;
+  border-radius: 50%;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+.input-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10%;
+}
+.username {
+  width: 60%;
+  height: 30px;
+  border: 2px solid black;
+  font-size: larger;
+}
+.password-div {
+  display: flex;
+  width: 61%;
+  align-items: center;
+  border: 2px solid black;
+}
+.password {
+  height: 30px;
+  width: 86%;
+  border: none;
+  outline: none;
+  font-size: larger;
+}
+.label {
+  font-size: larger;
+  font-weight: bold;
+}
+.input-body {
+  width: 80%;
+  margin: auto;
+}
+
+.register-btnn {
+  border: none;
+  color: black;
+  font-weight: bold;
+  background-color: #73abff;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    width: 90%;
+  }
+  .register-form {
+    width: 90%;
+  }
+  .input-body {
+    width: 100%;
+  }
+}
