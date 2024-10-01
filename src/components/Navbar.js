@@ -47,6 +47,7 @@ const Navbar = ({ setRegister, setLogin, setNewStory }) => {
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
+    navigate("/");
     window.location.reload();
   };
 
