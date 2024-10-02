@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "../style/addStories.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const EditStory = ({ setEditStory, storyData }) => {
+const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
   const [slides, setSlides] = useState([1, 2, 3]);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [formData, setFormData] = useState([]);
@@ -69,6 +69,7 @@ const EditStory = ({ setEditStory, storyData }) => {
       if (response.data.message === "success") {
         window.alert("story updated successfully!");
         setEditStory(false);
+        fetchUserStories();
       }
     } catch (error) {
       console.log(error);

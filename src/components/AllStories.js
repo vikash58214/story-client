@@ -4,20 +4,25 @@ import axios from "axios";
 import Stories from "./Stories";
 import YourStory from "./YourStory";
 import EditStory from "./EditStory";
-import Loader from "./Loader"; // Assuming you have a Loader component or can create one.
+import Loader from "./Loader";
 
-const AllStories = ({ viewStory, setNewStory }) => {
+const AllStories = ({
+  viewStory,
+  setNewStory,
+  setData,
+  datas,
+  userStories,
+  setUserStories,
+}) => {
   const [showAllFood, setShowAllFood] = useState(false);
   const [showAllIndia, setShowAllIndia] = useState(false);
   const [showAllWorld, setShowAllWorld] = useState(false);
   const [showAllMedical, setShowAllMedical] = useState(false);
 
-  const [datas, setData] = useState([]);
-  const [userStories, setUserStories] = useState([]);
   const [editStory, setEditStory] = useState(false);
 
-  const [loading, setLoading] = useState(true); // Loading state
-  const [loadingUserStories, setLoadingUserStories] = useState(true); // Loading state for user stories
+  const [loading, setLoading] = useState(true);
+  const [loadingUserStories, setLoadingUserStories] = useState(true);
 
   const userID = localStorage.getItem("userID");
   const token = localStorage.getItem("token");
@@ -25,7 +30,7 @@ const AllStories = ({ viewStory, setNewStory }) => {
 
   const fetchStories = async () => {
     try {
-      setLoading(true); // Start loading
+      setLoading(true);
       const response = await axios.get(
         `https://story-server-jtcw.onrender.com/getStory`
       );
@@ -34,13 +39,13 @@ const AllStories = ({ viewStory, setNewStory }) => {
       console.log(error);
       setData([]);
     } finally {
-      setLoading(false); // Stop loading after data is fetched
+      setLoading(false);
     }
   };
 
   const fetchUserStories = async () => {
     try {
-      setLoadingUserStories(true); // Start loading user stories
+      setLoadingUserStories(true);
       const response = await axios.get(
         `https://story-server-jtcw.onrender.com/getUserStory/${userID}`
       );
@@ -49,7 +54,7 @@ const AllStories = ({ viewStory, setNewStory }) => {
       console.log(error);
       setUserStories([]);
     } finally {
-      setLoadingUserStories(false); // Stop loading after data is fetched
+      setLoadingUserStories(false);
     }
   };
 
@@ -75,7 +80,7 @@ const AllStories = ({ viewStory, setNewStory }) => {
         )}
 
         {loading ? (
-          <Loader /> // Show loader while stories are being fetched
+          <Loader />
         ) : (
           <>
             <h1>Top Stories about Fruits</h1>
@@ -166,7 +171,11 @@ const AllStories = ({ viewStory, setNewStory }) => {
         )}
       </div>
       {editStory && (
-        <EditStory setEditStory={setEditStory} storyData={storyData} />
+        <EditStory
+          setEditStory={setEditStory}
+          fetchUserStories={fetchUserStories}
+          storyData={storyData}
+        />
       )}
     </>
   );

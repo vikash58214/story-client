@@ -4,6 +4,7 @@ import Register from "../components/Register";
 import Login from "../components/Login";
 import AddStories from "../components/AddStories";
 import ViewStories from "../components/ViewStories";
+import { useState } from "react";
 
 const Home = ({
   register,
@@ -18,6 +19,8 @@ const Home = ({
   storyID,
   setNewStory,
 }) => {
+  const [datas, setData] = useState([]);
+  const [userStories, setUserStories] = useState([]);
   return (
     <>
       <StoryIcon />
@@ -26,10 +29,20 @@ const Home = ({
         setNewStory={setNewStory}
         newStory={newStory}
         setViewStory={setViewStory}
+        setData={setData}
+        datas={datas}
+        userStories={userStories}
+        setUserStories={setUserStories}
       />
       {register && <Register setRegister={setRegister} />}
       {login && <Login setLogin={setLogin} />}
-      {newStory && <AddStories setNewStory={setNewStory} />}
+      {newStory && (
+        <AddStories
+          setNewStory={setNewStory}
+          setData={setData}
+          setUserStories={setUserStories}
+        />
+      )}
       {viewStory && (
         <ViewStories
           login={login}

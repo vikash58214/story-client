@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "../style/addStories.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddStories = ({ setNewStory }) => {
+const AddStories = ({ setNewStory, setData, setUserStories }) => {
   const [slides, setSlides] = useState([1, 2, 3]);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [formData, setFormData] = useState([
@@ -62,11 +62,16 @@ const AddStories = ({ setNewStory }) => {
 
     try {
       setLoading(true);
-      await axios.post("https://story-server-jtcw.onrender.com/addStory", {
-        slides: formData,
-        category,
-        userID,
-      });
+      const response = await axios.post(
+        "https://story-server-jtcw.onrender.com/addStory",
+        {
+          slides: formData,
+          category,
+          userID,
+        }
+      );
+      setData((prevData) => [...prevData, response.data.story]);
+      setUserStories((prevData) => [...prevData, response.data.story]);
       setNewStory(false);
     } catch (error) {
       console.log(error.message || error.response);
