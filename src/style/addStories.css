@@ -70,7 +70,7 @@
   padding: 8px;
   outline: none;
   font-size: 14px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 4px;
 }
 .form-group select {
@@ -79,7 +79,7 @@
   padding: 8px;
   outline: none;
   font-size: 14px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 4px;
 }
 .form-group textarea {
