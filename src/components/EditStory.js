@@ -15,7 +15,7 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
   useEffect(() => {
     if (storyData) {
       const initializedFormData = storyData.slides.map((slide) => ({
-        heading: slide.heading || "sdds",
+        heading: slide.heading || "",
         description: slide.description || "",
         image: slide.image || "",
       }));
@@ -67,7 +67,7 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
         }
       );
       if (response.data.message === "success") {
-        window.alert("story updated successfully!");
+        window.alert("Story updated successfully!");
         setEditStory(false);
         fetchUserStories();
       }
@@ -131,7 +131,7 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
             </div>
 
             <div className="form-group">
-              <label>Image URL:</label>
+              <label>Image:</label>
               <input
                 type="text"
                 name="image"
@@ -158,38 +158,48 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
           </div>
 
           <div className="form-actions">
-            <button
-              onClick={() => handleSlideChange(currentSlide - 1)}
-              disabled={currentSlide === 1}
-            >
-              Previous
-            </button>
-            {currentSlide < slides.length ? (
+            <div className="nav-buttons">
               <button
-                onClick={() => handleSlideChange(currentSlide + 1)}
+                onClick={() => handleSlideChange(currentSlide - 1)}
+                disabled={currentSlide === 1}
                 style={{
                   padding: "10px 20px",
-                  backgroundColor: "lightblue",
+                  backgroundColor: currentSlide === 1 ? "#7EFF73" : "#7EFF73",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: currentSlide === 1 ? "not-allowed" : "pointer",
+                }}
+              >
+                Previous
+              </button>
+
+              <button
+                onClick={() => handleSlideChange(currentSlide + 1)}
+                disabled={currentSlide === slides.length}
+                style={{
+                  padding: "10px 30px",
+                  backgroundColor:
+                    currentSlide === slides.length ? "#73ABFF" : "#73ABFF",
+                  border: "none",
+                  cursor:
+                    currentSlide === slides.length ? "not-allowed" : "pointer",
                 }}
               >
                 Next
               </button>
-            ) : (
-              <button
-                onClick={handleUpdateStory}
-                disabled={isUpdating}
-                style={{
-                  padding: "10px 20px",
-                  backgroundColor: isUpdating ? "gray" : "salmon",
-                  border: "none",
-                  cursor: isUpdating ? "not-allowed" : "pointer",
-                }}
-              >
-                {isUpdating ? "Updating" : "Post"}
-              </button>
-            )}
+            </div>
+
+            <button
+              onClick={handleUpdateStory}
+              disabled={isUpdating}
+              style={{
+                padding: "10px 30px",
+                backgroundColor: isUpdating ? "salmon" : "salmon",
+                border: "none",
+                cursor: isUpdating ? "not-allowed" : "pointer",
+              }}
+            >
+              {isUpdating ? "Updating..." : "Post"}
+            </button>
           </div>
         </div>
       </div>

@@ -174,7 +174,7 @@ const AddStories = ({ setNewStory, setData, setUserStories }) => {
             </div>
 
             <div className="form-group">
-              <label>Image URL:</label>
+              <label>Image:</label>
               <input
                 type="text"
                 name="image"
