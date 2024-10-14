@@ -237,6 +237,10 @@ const ViewStories = ({
                         <img src={ShareIcon} alt="shareIcon" />
                       </button>
                     </div>
+                    <div className="mid-sec">
+                      <div onClick={handlePrevious} className="left-sm"></div>
+                      <div onClick={handleNext} className="left-sm"></div>
+                    </div>
                     <div className="story-bottom-div">
                       <p>{story[currentIndex].heading}</p>
                       <p style={{ fontSize: "small" }}>
