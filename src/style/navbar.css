@@ -41,7 +41,7 @@
 }
 .nav-login-container {
   margin-right: 10px;
-  min-width: 25%;
+  min-width: 30%;
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -54,18 +54,111 @@
   width: 100%;
 }
 .hamburger-div {
-  position: relative;
+  display: flex;
+  justify-content: end;
+  margin-left: 20px;
 }
 .logout-div {
   position: absolute;
   background-color: #ffffff;
-  width: 250px;
-  height: 100px;
+  width: 20%;
+  min-height: 150px;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  bottom: -112px;
-  left: -200px;
+  top: 50px;
+  right: 0;
+}
+.nav-top-icons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-top-icon {
+  width: 90%;
+  display: none;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.max-dis {
+  display: block;
+}
+.x-2 {
+  background: none;
+  border: none;
+  font-size: x-large;
+  cursor: pointer;
+}
+.logout-vk {
+  display: none;
+}
+.logout-sm {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  flex-direction: column;
+  min-height: 400px;
+  background-color: white;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50px;
+}
+.logout-dm {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.x-sm {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: xx-large;
+}
+.sign-btnn {
+  background-color: #ff7373;
+  color: white;
+  font-weight: bold;
+  width: 110px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 480px) {
+  .nav-top-icons {
+    display: none;
+  }
+  .nav-top-icon {
+    display: flex;
+  }
+  .logout-div {
+    width: 100%;
+  }
+  .nav-login-container {
+    justify-content: end;
+  }
+  .max-dis {
+    display: none;
+  }
+  .nav-button-container {
+    display: none;
+  }
+  .logout-vk {
+    display: block;
+  }
 }
