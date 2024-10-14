@@ -126,6 +126,7 @@ const Register = ({ setRegister }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
+                marginTop: "10px",
               }}
             >
               <button

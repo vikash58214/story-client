@@ -115,7 +115,7 @@ const Login = ({ setLogin }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
-                marginTop: "14%",
+                marginTop: "10px",
               }}
             >
               <button className="register-btnn">Login</button>

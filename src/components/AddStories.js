@@ -5,21 +5,21 @@ import "../style/addStories.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddStories = ({ setNewStory, setData, setUserStories }) => {
-  const [slides, setSlides] = useState([1, 2, 3]);
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [slides, setSlides] = useState([1, 2, 3]); // Initial slides
+  const [currentSlide, setCurrentSlide] = useState(1); // Current slide index
   const [formData, setFormData] = useState([
     { heading: "", description: "", image: "" },
     { heading: "", description: "", image: "" },
     { heading: "", description: "", image: "" },
-  ]);
+  ]); // Form data for each slide
 
-  const [category, setCategory] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState(""); // Selected category
+  const [loading, setLoading] = useState(false); // Loading state
 
-  const userID = localStorage.getItem("userID");
+  const userID = localStorage.getItem("userID"); // Fetch user ID from local storage
+  const maxSlides = 6; // Max allowed slides
 
-  const maxSlides = 6;
-
+  // Add a new slide
   const addSlide = () => {
     if (slides.length < maxSlides) {
       setSlides([...slides, slides.length + 1]);
@@ -27,6 +27,18 @@ const AddStories = ({ setNewStory, setData, setUserStories }) => {
     }
   };
 
+  // Remove the last slide
+  const removeLastSlide = () => {
+    if (slides.length > 3) {
+      const updatedSlides = slides.slice(0, -1);
+      const updatedFormData = formData.slice(0, -1);
+      setSlides(updatedSlides);
+      setFormData(updatedFormData);
+      setCurrentSlide(Math.min(currentSlide, updatedSlides.length)); // Adjust currentSlide if necessary
+    }
+  };
+
+  // Handle input changes in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     const updatedFormData = [...formData];
@@ -35,17 +47,18 @@ const AddStories = ({ setNewStory, setData, setUserStories }) => {
   };
 
   const closeStoryForm = () => {
-    setNewStory(false);
+    setNewStory(false); // Close the story form
   };
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    setCategory(e.target.value); // Update category state
   };
 
   const handleSlideChange = (slide) => {
-    setCurrentSlide(slide);
+    setCurrentSlide(slide); // Change the current slide
   };
 
+  // Submit the form data
   const handleSubmit = async () => {
     if (loading) return;
     for (let i = 0; i < formData.length; i++) {
@@ -92,15 +105,43 @@ const AddStories = ({ setNewStory, setData, setUserStories }) => {
             </button>
           </div>
           <div className="slide-tabs">
-            {slides.map((slide) => (
+            {slides.map((slide, index) => (
               <div
                 key={slide}
                 className={`slide-tab ${
                   currentSlide === slide ? "active" : ""
                 }`}
                 onClick={() => handleSlideChange(slide)}
+                style={{ position: "relative" }}
               >
                 Slide {slide}
+                {/* Show X button on the last slide after third */}
+                {index >= 3 && index === slides.length - 1 && (
+                  <button
+                    className="remove-slide"
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent slide change on click
+                      removeLastSlide();
+                    }}
+                    style={{
+                      position: "absolute",
+                      top: "20%",
+                      right: "-6px",
+                      transform: "translateY(-50%)",
+                      background: "none",
+                      color: "red",
+                      borderRadius: "50%",
+                      border: "1px red solid",
+                      cursor: "pointer",
+                      fontSize: "10px",
+                      fontWeight: "bold",
+                      width: "19px",
+                      height: "19px",
+                    }}
+                  >
+                    X
+                  </button>
+                )}
               </div>
             ))}
             {slides.length < maxSlides && (
@@ -160,38 +201,54 @@ const AddStories = ({ setNewStory, setData, setUserStories }) => {
           </div>
 
           <div className="form-actions">
-            <button
-              onClick={() => handleSlideChange(currentSlide - 1)}
-              disabled={currentSlide === 1}
-            >
-              Previous
-            </button>
-            {currentSlide < slides.length ? (
+            <div className="nav-buttons">
               <button
-                onClick={() => handleSlideChange(currentSlide + 1)}
+                onClick={() => handleSlideChange(currentSlide - 1)}
+                disabled={currentSlide === 1}
                 style={{
                   padding: "10px 20px",
-                  backgroundColor: "lightblue",
+                  backgroundColor: currentSlide === 1 ? "#7EFF73" : "#7EFF73",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: currentSlide === 1 ? "not-allowed" : "pointer",
+                }}
+              >
+                Previous
+              </button>
+
+              <button
+                onClick={() => handleSlideChange(currentSlide + 1)}
+                disabled={currentSlide === slides.length}
+                style={{
+                  padding: "10px 30px",
+                  backgroundColor:
+                    currentSlide === slides.length ? "#73ABFF" : "#73ABFF",
+                  border: "none",
+                  cursor:
+                    currentSlide === slides.length ? "not-allowed" : "pointer",
                 }}
               >
                 Next
               </button>
-            ) : (
-              <button
-                onClick={handleSubmit}
-                disabled={loading}
-                style={{
-                  padding: "10px 20px",
-                  backgroundColor: loading ? "gray" : "salmon",
-                  border: "none",
-                  cursor: loading ? "not-allowed" : "pointer",
-                }}
-              >
-                {loading ? "Posting" : "Post"}
-              </button>
-            )}
+            </div>
+
+            <button
+              onClick={handleSubmit}
+              disabled={currentSlide !== slides.length || loading}
+              style={{
+                padding: "10px 30px",
+                backgroundColor:
+                  currentSlide !== slides.length || loading
+                    ? "salmon"
+                    : "salmon",
+                border: "none",
+                cursor:
+                  currentSlide !== slides.length || loading
+                    ? "not-allowed"
+                    : "pointer",
+              }}
+            >
+              {loading ? "Posting" : "Post"}
+            </button>
           </div>
         </div>
       </div>
