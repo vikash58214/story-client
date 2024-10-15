@@ -39,7 +39,7 @@
 }
 
 .slide-tab.active {
-  border: 2px solid blue;
+  border: 2px solid #73abff;
 }
 
 .add-slide {
@@ -105,21 +105,72 @@
   border-radius: 20px;
 }
 
-@media (max-width: 768px) {
+.slide-tabss {
+  display: none;
+}
+
+@media (max-width: 480px) {
   .story-form-container {
-    width: 90%;
-    padding: 15px;
+    width: 70%;
+    padding: 10px;
   }
 
-  .form-group input,
-  .form-group textarea,
   .form-group select {
-    padding: 6px;
-    font-size: 12px;
+    display: block;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  .form-group input,
+  .form-group textarea {
+    display: block;
+    width: 90%;
+    padding: 8px;
+    outline: none;
+    font-size: 10px;
+    border: 1px solid black;
+    border-radius: 0px;
+  }
+
+  .form-fields {
+    width: 100%;
+  }
+
+  .prev {
+    display: none;
+  }
+  .nxt {
+    display: none;
+  }
+  .form-group textarea {
+    height: 40px;
+    resize: vertical;
+  }
+
+  .abcc {
+    display: flex;
+  }
+  .slide-tabs {
+    display: none;
+  }
+  .slide-tabss {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  .form-fields {
+    font-size: small;
+  }
+  .form-group {
+    flex-direction: column;
+    align-items: start;
+    padding-left: 15px;
   }
 
   .form-actions {
-    justify-content: start;
+    justify-content: center;
   }
 
   .form-actions button {
@@ -131,28 +182,4 @@
     font-size: 12px;
     padding: 8px;
   }
-
-  .slide-tabs {
-    justify-content: center;
-  }
 }
-
-/* @media (max-width: 480px) {
-  .story-form-container {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 5px;
-    font-size: 11px;
-  }
-
-  .slide-tab,
-  .add-slide {
-    font-size: 11px;
-    padding: 6px;
-  }
-} */

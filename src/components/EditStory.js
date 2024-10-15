@@ -107,59 +107,79 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
               </div>
             )}
           </div>
-
-          <div className="form-fields">
-            <div className="form-group">
-              <label>Heading:</label>
-              <input
-                type="text"
-                name="heading"
-                value={formData[currentSlide - 1]?.heading || ""}
-                onChange={handleInputChange}
-                placeholder="Your heading"
-              />
+          <div className="abcc">
+            <div className="slide-tabss">
+              {slides.map((slide) => (
+                <div
+                  key={slide}
+                  className={`slide-tab ${
+                    currentSlide === slide ? "active" : ""
+                  }`}
+                  onClick={() => handleSlideChange(slide)}
+                >
+                  Slide {slide}
+                </div>
+              ))}
+              {slides.length < maxSlides && (
+                <div className="add-slide" onClick={addSlide}>
+                  Add +
+                </div>
+              )}
             </div>
+            <div className="form-fields">
+              <div className="form-group">
+                <label>Heading:</label>
+                <input
+                  type="text"
+                  name="heading"
+                  value={formData[currentSlide - 1]?.heading || ""}
+                  onChange={handleInputChange}
+                  placeholder="Your heading"
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Description:</label>
-              <textarea
-                name="description"
-                value={formData[currentSlide - 1]?.description || ""}
-                onChange={handleInputChange}
-                placeholder="Story Description"
-              />
-            </div>
+              <div className="form-group">
+                <label>Description:</label>
+                <textarea
+                  name="description"
+                  value={formData[currentSlide - 1]?.description || ""}
+                  onChange={handleInputChange}
+                  placeholder="Story Description"
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Image:</label>
-              <input
-                type="text"
-                name="image"
-                value={formData[currentSlide - 1]?.image || ""}
-                onChange={handleInputChange}
-                placeholder="Add Image URL"
-              />
-            </div>
+              <div className="form-group">
+                <label>Image:</label>
+                <input
+                  type="text"
+                  name="image"
+                  value={formData[currentSlide - 1]?.image || ""}
+                  onChange={handleInputChange}
+                  placeholder="Add Image URL"
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Category:</label>
-              <select
-                name="category"
-                value={category}
-                onChange={handleCategoryChange}
-              >
-                <option value="">Select category</option>
-                <option value="India">India</option>
-                <option value="World">World</option>
-                <option value="Fruit">Fruit</option>
-                <option value="Medical">Medical</option>
-              </select>
+              <div className="form-group">
+                <label>Category:</label>
+                <select
+                  name="category"
+                  value={category}
+                  onChange={handleCategoryChange}
+                >
+                  <option value="">Select category</option>
+                  <option value="India">India</option>
+                  <option value="World">World</option>
+                  <option value="Fruit">Fruit</option>
+                  <option value="Medical">Medical</option>
+                </select>
+              </div>
             </div>
           </div>
 
           <div className="form-actions">
             <div className="nav-buttons">
               <button
+                className="prev"
                 onClick={() => handleSlideChange(currentSlide - 1)}
                 disabled={currentSlide === 1}
                 style={{
@@ -175,6 +195,7 @@ const EditStory = ({ setEditStory, fetchUserStories, storyData }) => {
               <button
                 onClick={() => handleSlideChange(currentSlide + 1)}
                 disabled={currentSlide === slides.length}
+                className="nxt"
                 style={{
                   padding: "10px 30px",
                   backgroundColor:
